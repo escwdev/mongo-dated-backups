@@ -6,7 +6,7 @@ The script uses mongodump's archive and gzip options so the result is a .gz arch
 
 ## Getting Started
 
-Clone the repository and make alter the mongo_backup.js file to make use of your Database/Collection that you would like to backup. The backup location is by default /var/backups but can be changed accordingly. 
+Clone the repository and alter the mongo_backup.js file to make use of your Database/Collection that you would like to backup. The backup location is by default /var/backups but can be changed accordingly. 
 
 ## Running the Script
 

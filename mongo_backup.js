@@ -16,7 +16,7 @@ const getStartDate = function() {
   let month = time.getMonth()
   let date = time.getDate()
   if (month === 0) {
-    month = 12
+    month = 11
   } else {
     month--
   }
@@ -31,7 +31,7 @@ const getEndDate = function() {
   return new Date(year, month, date)
 }
 
-// const fromDate = Math.floor(new Date(new Date().getTime() - 1000 * 60 * 60 * 24) / 1000).toString(16) + '0000000000000000'
+// Set to/from dates for ObjectId
 const toDate = objectIdFromDate(getEndDate(time))
 const fromDate = objectIdFromDate(getStartDate(time))
 
@@ -46,6 +46,7 @@ const archivePath = backupDir + '/' + backupName + '.gz'
 const query = `'{_id: { $lte: ObjectId("${toDate}"), $gte: ObjectId("${fromDate}")}}'`
 const mongodump = `${mongodumpPath} -d ${db} -c ${collection} -q ${query} --archive=${archivePath} --gzip`
 
+// Shell execution
 let child = exec(mongodump, function(err, stdout, stderr) {
         if (err) {
                 console.log(stderr)
