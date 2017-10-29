@@ -10,16 +10,12 @@ const objectIdFromDate = function(date) {
   return Math.floor(date.getTime() / 1000).toString(16) + "0000000000000000"
 }
 
-// Helper function to set start date
+// Helper function to set start date [DEFAULT: set to be 1 month]
 const getStartDate = function() {
   let year = time.getFullYear()
   let month = time.getMonth()
   let date = time.getDate()
-  if (month === 0) {
-    month = 11
-  } else {
-    month--
-  }
+  month === 0 ? month = 11 : month--
   return new Date(year, month, date)
 }
 
@@ -44,6 +40,8 @@ const archivePath = backupDir + '/' + backupName + '.gz'
 
 // Query setup
 const query = `'{_id: { $lte: ObjectId("${toDate}"), $gte: ObjectId("${fromDate}")}}'`
+
+// Mongodump command line setup
 const mongodump = `${mongodumpPath} -d ${db} -c ${collection} -q ${query} --archive=${archivePath} --gzip`
 
 // Shell execution
