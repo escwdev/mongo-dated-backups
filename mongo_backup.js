@@ -46,9 +46,9 @@ const mongodump = `${mongodumpPath} -d ${db} -c ${collection} -q ${query} --arch
 
 // Shell execution
 let child = exec(mongodump, function(err, stdout, stderr) {
-        if (err) {
-                console.log(stderr)
-        } else {
-                console.log(stdout)
-        }
+  if (err) {
+    console.log(stderr)
+  } else {
+    console.log(stdout)
+  }
 })
